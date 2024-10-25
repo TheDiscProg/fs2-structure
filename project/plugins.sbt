@@ -1,5 +1,4 @@
 addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.5.2")
-//addSbtPlugin("ch.epfl.scala" % "sbt-version-policy" % "3.2.1")
 addSbtPlugin("dev.guardrail" % "sbt-guardrail" % "0.75.2")
 addSbtPlugin("org.scoverage" % "sbt-scoverage" % "2.2.2")
 addSbtPlugin("com.codecommit" % "sbt-github-packages" % "0.5.3")
