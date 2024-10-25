@@ -4,6 +4,9 @@ A blueprint for creating new services. It:
 * Uses Guardrail to build the HTTP API
 * Uses Blaze HTTP server
 
+Use this when using ***Stream[F, Unit]*** as the final type; ***F*** can be Cats ***IO*** and is provided as default.
+This is ideal for services that listen on RabbitMQ or Kafka queues.
+
 ## What's included
 There is a simple health check API that returns a status.  
 A basic health check is enabled but other health checks can be added (see below).  
