@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  description: "SIMEX Scala Template"
+  description: "SIMEX Webservice FS2 Template"
   version: 1.0.0
   title: SIMEX Template API
 tags:

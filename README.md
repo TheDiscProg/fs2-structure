@@ -1,5 +1,5 @@
-# Simex Messaging API Service Template using FS2 Stream
-A template for creating new services. It:
+# Simex Web service Template using FS2 Stream
+A blueprint for creating new services. It:
 * Is written in Scala
 * Uses Guardrail to build the HTTP API
 * Uses Blaze HTTP server
@@ -11,9 +11,8 @@ Please note that the health check API does not use SIMEX.
 
 ## Extending the service for specific service
 Use the ***base*** section for entities (basic data carriers) and interfaces or traits.  
-The package ***simex.entities*** is where any SIMEX request/response should live. As these are evolved 
-to a final solution, they can be moved into a separate repository.  
-The package name should follow the format ***simex.\<application\>.domain.\<service\>**  
+The package ***...server.entities*** is where any SIMEX request/response should live. As these are evolved 
+to a final solution, they can be moved into a separate repository.
 
 ### Package Naming: Application
 This should refer to the name of the service or application, for example, ***authenticator***.
@@ -28,7 +27,7 @@ Within the service package, sub-packages can be created for entities, services, 
 make the code cleaner. However, entities and traits should all live in ***base***.
 
 ## Health Check
-A basic health check is enabled in this service, but additional health checks can be enabled as described below. An 
+A basic health check is enabled in this service, but additional health checks can be enabled as described below. A 
 high-level description is given below.
 
 HeathRoutes --> HealthCheckService --> List: HealthChecker

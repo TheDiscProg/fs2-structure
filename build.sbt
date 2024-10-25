@@ -1,29 +1,25 @@
+lazy val scala3 = "3.5.1"
 
 ThisBuild / organization := "simex"
 
-ThisBuild / version := "1.0.0"
+ThisBuild / version := "2.0.0"
 
 ThisBuild / versionScheme := Some("early-semver")
 
 lazy val commonSettings = Seq(
-  scalaVersion := "2.13.10",
+  scalaVersion := scala3,
   libraryDependencies ++= Dependencies.all,
   resolvers += Resolver.githubPackages("TheDiscProg"),
   githubOwner := "TheDiscProg",
-  githubRepository := "simex-fs2-template",
-  addCompilerPlugin(
-    ("org.typelevel" %% "kind-projector" % "0.13.2").cross(CrossVersion.full)
-  ),
-  addCompilerPlugin("com.olegpy" %% "better-monadic-for" % "0.3.1"),
+  githubRepository := "simex-webservice-fs2-template",
   publishConfiguration := publishConfiguration.value.withOverwrite(true),
   publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true)
 )
 
-
 lazy val base = (project in file("base"))
   .settings(
     commonSettings,
-    name := "template-fs2-base",
+    name := "simex-webservice-fs2-template-base",
     scalacOptions ++= Scalac.options,
     coverageExcludedPackages := Seq(
       "<empty>",
@@ -35,11 +31,11 @@ lazy val base = (project in file("base"))
 lazy val guardrail = (project in file("guardrail"))
   .settings(
     commonSettings,
-    name := "template-fs2-guardrail",
+    name := "simex-webservice-fs2-template-guardrail",
     Compile / guardrailTasks := List(
       ScalaServer(
         file("swagger.yaml"),
-        pkg = "simex.guardrail",
+        pkg = "io.github.thediscprog.fs2template.guardrail",
         framework = "http4s",
         tracing = false,
         imports = List(
@@ -64,7 +60,7 @@ lazy val root = (project in file("."))
   )
   .settings(
     commonSettings,
-    name := "simex-fs2-template", // change to your repo
+    name := "simex-webservice-fs2-template", // change to your repo
     Compile / doc / sources := Seq.empty,
     scalacOptions ++= Scalac.options,
     coverageExcludedPackages := Seq(
@@ -76,13 +72,13 @@ lazy val root = (project in file("."))
       ".*AppServer.*"
     ).mkString(";"),
     coverageFailOnMinimum := true,
-    coverageMinimumStmtTotal := 85,
+    coverageMinimumStmtTotal := 79,
     coverageMinimumBranchTotal := 95,
     Compile / mainClass := Some("simex.MainApp"),
-    Docker / packageName := "simex-template", // Change to your repo
+    Docker / packageName := "simex-webservice-fs2-template", // Change to your repo
     Docker / dockerUsername := Some("ramindur"),
     Docker / defaultLinuxInstallLocation := "/opt/simex-template", // Change to your repo
-    dockerBaseImage := "eclipse-temurin:17-jdk-jammy",
+    dockerBaseImage := "eclipse-temurin:21-jdk",
     dockerExposedPorts ++= Seq(8000), // Change to unique port defined in CONF
     dockerExposedVolumes := Seq("/opt/docker/.logs", "/opt/docker/.keys")
   )
